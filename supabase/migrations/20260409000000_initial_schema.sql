@@ -94,18 +94,32 @@ create policy "Executors can view their own executor record"
 -- 4. DEATH_REGISTRATIONS
 -- Created when an executor confirms a death.
 -- cancel_token powers the author's 72-hour kill-switch link.
+-- grace_period_ends_at is set automatically by trigger.
 -- ============================================================
 create table public.death_registrations (
-  id                       uuid primary key default gen_random_uuid(),
-  author_id                uuid not null references public.profiles(id) on delete cascade,
+  id                        uuid primary key default gen_random_uuid(),
+  author_id                 uuid not null references public.profiles(id) on delete cascade,
   registered_by_executor_id uuid not null references public.executors(id),
-  registered_at            timestamptz default now(),
-  grace_period_ends_at     timestamptz generated always as
-                             (registered_at + interval '72 hours') stored,
-  cancel_token             uuid not null default gen_random_uuid(),
-  cancelled_at             timestamptz,
-  deliveries_sent_at       timestamptz
+  registered_at             timestamptz default now(),
+  grace_period_ends_at      timestamptz,
+  cancel_token              uuid not null default gen_random_uuid(),
+  cancelled_at              timestamptz,
+  deliveries_sent_at        timestamptz
 );
+
+-- Trigger: auto-set grace_period_ends_at = registered_at + 72 hours
+create or replace function public.set_grace_period()
+returns trigger language plpgsql
+as $$
+begin
+  new.grace_period_ends_at := new.registered_at + interval '72 hours';
+  return new;
+end;
+$$;
+
+create trigger set_grace_period_on_insert
+  before insert on public.death_registrations
+  for each row execute procedure public.set_grace_period();
 
 alter table public.death_registrations enable row level security;
 
