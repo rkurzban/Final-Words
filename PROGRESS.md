@@ -160,7 +160,7 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
   - `.env.local` uses standard local dev defaults — replace `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` with real project credentials before deploying to Vercel
 - [x] Build `AppShell` — nav, auth guard, role detection
 - [x] Build `/auth` page — magic link sign-in form
-- [ ] Build `/messages` page — message list with status badges
+- [x] Build `/messages` page — message list with status badges
 - [ ] Build `MessageForm` — create/edit with recurring fields
 - [ ] Build `/executors` page — manage designated executors
 - [ ] Build `/executor` dashboard — executor-facing view
