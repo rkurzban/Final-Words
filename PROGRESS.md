@@ -166,4 +166,4 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 - [x] Build `/executor` dashboard — executor-facing view
 - [ ] Set up Resend for email
 - [ ] Write Edge Functions for delivery and check-in pipeline
-- [ ] Deploy to Vercel
+- [x] Deploy to Vercel — https://final-words-git-main-rob-kurzbans-projects.vercel.app
