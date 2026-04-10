@@ -1,6 +1,6 @@
 # Final Words — Project Progress
 
-Last updated: April 10, 2026 (updated)
+Last updated: April 10, 2026
 
 ---
 
@@ -266,4 +266,8 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 - [ ] Write Edge Functions for delivery and check-in pipeline
 - [x] Deploy to Vercel — https://final-words-git-main-rob-kurzbans-projects.vercel.app
   - App loads correctly
-  - Magic link sign-in not working yet — `/auth/callback` returns 404 despite `vercel.json` rewrite rule; needs further investigation
+  - SPA routing fixed via `vercel.json` rewrite rule
+  - Magic link sign-in working (Supabase free tier caps auth emails at 2/hr)
+  - Full design system implemented — Cormorant Garamond + Inter, navy/gold/burgundy palette
+  - Auth bypassed for demo (`AUTH_REQUIRED = false` in AppShell — flip to re-enable)
+  - Demo data shown to unauthenticated visitors (4 messages, 2 executors)
