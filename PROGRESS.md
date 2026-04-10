@@ -1,6 +1,6 @@
 # Final Words — Project Progress
 
-Last updated: April 9, 2026
+Last updated: April 10, 2026
 
 ---
 
@@ -156,7 +156,7 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 
 ## What's Next
 
-- [ ] Wire up Supabase client in the React app (`src/lib/supabase.js`)
+- [x] Wire up Supabase client in the React app (`src/lib/supabase.js`)
 - [ ] Build `AppShell` — nav, auth guard, role detection
 - [ ] Build `/auth` page — magic link sign-in form
 - [ ] Build `/messages` page — message list with status badges
