@@ -4,6 +4,104 @@ Last updated: April 10, 2026 (updated)
 
 ---
 
+## Design & Aesthetic
+
+### Philosophy
+
+Final Words is an act of agency — someone choosing, while alive, to reach across death. The design should reflect that. It is not a grief app or a memorial; it is a private, deliberate, dignified act. The visual language should feel like a well-made legal document or a handwritten letter on good paper: formal, considered, and human. Nothing should feel rushed, cute, or casual.
+
+### Color Palette
+
+| Role | Name | Hex |
+|---|---|---|
+| Background | Warm white | `#F7F5F2` |
+| Surface (cards, forms) | Off-white | `#EDEAE5` |
+| Border | Stone | `#D4D0CA` |
+| Body text | Near-black | `#1A1A1A` |
+| Secondary text | Warm grey | `#6B6560` |
+| Primary accent | Midnight navy | `#1C3554` |
+| Primary accent hover | Deep navy | `#142844` |
+| Secondary accent | Antique gold | `#B8962E` |
+| Danger | Dark burgundy | `#7A1F2E` |
+| Status — draft | Warm grey | `#8A8680` |
+| Status — active | Midnight navy | `#1C3554` |
+| Status — delivered | Forest | `#2D5016` |
+| Status — cancelled | Dark burgundy | `#7A1F2E` |
+
+The gold is used sparingly — only for the most significant moments (e.g. the "Activate" button, a confirmed registration). It should feel like the wax seal on a letter, not a highlight color.
+
+### Typography
+
+| Role | Font | Notes |
+|---|---|---|
+| Headings | Cormorant Garamond | Classical, high-contrast, editorial. Suggests permanence. |
+| Body / UI | Inter | Clean humanist sans. Readable at all sizes. |
+| Monospace | JetBrains Mono | For tokens, IDs, code if needed. |
+
+Both are available on Google Fonts. Heading weights should stay at 400–500 — never bold. The elegance of Cormorant Garamond comes from restraint, not weight.
+
+Line height: 1.6 for body, 1.2 for headings. Generous letter-spacing on headings at display sizes (~0.02em). Maximum content width: 720px. Never center-align body text.
+
+### Layout Principles
+
+- Whitespace is respect. Margins should be generous — nothing cramped.
+- Single-column layouts for all forms and reading views.
+- Left-aligned text throughout. Centered text only for the sign-in page heading.
+- No more than one primary action visible at a time.
+- Squared or very slightly rounded corners (2px max) — pill shapes are too casual.
+- No drop shadows. Separation through background color and border, not depth effects.
+- No gradients.
+
+### UI Components
+
+**Buttons**
+- Primary: midnight navy background, warm white text — used for "Activate", "Send sign-in link"
+- Secondary: transparent with stone border, near-black text — used for "Save as draft", "Cancel"
+- Gold: antique gold background, near-black text — used only for the single most important confirmation (e.g. final death registration confirm)
+- Danger: dark burgundy background, white text — "Cancel message", "Remove executor"
+- All buttons: 2px border-radius, generous padding, no shadows, uppercase tracking on label text
+
+**Form fields**
+- 1px stone border, off-white background
+- On focus: midnight navy border, no glow/shadow
+- Generous padding (12px 16px)
+- Error states: dark burgundy border and text, no icons
+
+**Status badges**
+- Small caps or slightly tracked uppercase text
+- Filled pill shape — the one exception to the squared-corner rule, since badges are small labels
+- Colors from the palette table above
+
+**Navigation**
+- Dark background (near-black `#1A1A1A`), warm white text
+- No icons — text links only
+- Active link: antique gold underline or left border
+- Simple, minimal — the nav should recede, not compete
+
+### Imagery
+
+All images should be AI-generated or photographic. Suggested directions:
+
+- A sealed envelope on a dark, textured surface — candlelight optional
+- Aged paper with handwriting, slightly out of focus
+- A single candle flame against dark background
+- A fountain pen resting on paper
+- Stone, marble texture — not as background but as accent or header image
+- Autumn light through a window onto a writing desk
+
+**Avoid:** flowers, hearts, clocks, hourglasses, angels, any iconography that reads as greeting card or sympathy card. No icons in the UI at all — text and typography carry the weight.
+
+### Copy & Voice
+
+- Formal but warm. Never clinical, never breezy.
+- Second person, direct: "Your messages", "Your executors"
+- No exclamation points anywhere in the UI
+- No cutesy error messages — "Something went wrong. Please try again." not "Oops!"
+- Confirmation language should be solemn: "This cannot be undone" not "Are you sure?"
+- Empty states should be gentle invitations: "You haven't written any messages yet." with a quiet link, not a big cheerful CTA button
+
+---
+
 ## What This App Does
 
 Final Words lets users compose messages to loved ones, to be delivered after they die. Each message is tied to a specific recipient. The author chooses:

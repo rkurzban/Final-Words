@@ -37,6 +37,7 @@ export default function AuthPage() {
   return (
     <div className="auth-page">
       <h1>Final Words</h1>
+      <p>Words that outlast you.</p>
       {sent ? (
         <p className="auth-sent">
           Check your email — we sent a sign-in link to <strong>{email}</strong>.
