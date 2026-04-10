@@ -161,7 +161,7 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 - [x] Build `AppShell` — nav, auth guard, role detection
 - [x] Build `/auth` page — magic link sign-in form
 - [x] Build `/messages` page — message list with status badges
-- [ ] Build `MessageForm` — create/edit with recurring fields
+- [x] Build `MessageForm` — create/edit with recurring fields
 - [ ] Build `/executors` page — manage designated executors
 - [ ] Build `/executor` dashboard — executor-facing view
 - [ ] Set up Resend for email

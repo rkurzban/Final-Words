@@ -3,6 +3,7 @@ import AppShell from './components/AppShell'
 import AuthPage from './pages/AuthPage'
 import AuthCallback from './pages/AuthCallback'
 import MessagesPage from './pages/MessagesPage'
+import MessageFormPage from './pages/MessageFormPage'
 import ExecutorsPage from './pages/ExecutorsPage'
 import ExecutorDashboard from './pages/ExecutorDashboard'
 
@@ -15,8 +16,8 @@ export default function App() {
         <Route element={<AppShell />}>
           <Route index element={<Navigate to="/messages" replace />} />
           <Route path="/messages" element={<MessagesPage />} />
-          <Route path="/messages/new" element={<div>New message — coming soon</div>} />
-          <Route path="/messages/:id" element={<div>Edit message — coming soon</div>} />
+          <Route path="/messages/new" element={<MessageFormPage />} />
+          <Route path="/messages/:id" element={<MessageFormPage />} />
           <Route path="/executors" element={<ExecutorsPage />} />
           <Route path="/executor" element={<ExecutorDashboard />} />
         </Route>
