@@ -163,7 +163,7 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 - [x] Build `/messages` page — message list with status badges
 - [x] Build `MessageForm` — create/edit with recurring fields
 - [x] Build `/executors` page — manage designated executors
-- [ ] Build `/executor` dashboard — executor-facing view
+- [x] Build `/executor` dashboard — executor-facing view
 - [ ] Set up Resend for email
 - [ ] Write Edge Functions for delivery and check-in pipeline
 - [ ] Deploy to Vercel
