@@ -1,6 +1,6 @@
 # Final Words — Project Progress
 
-Last updated: April 10, 2026
+Last updated: April 10, 2026 (updated)
 
 ---
 
@@ -157,7 +157,8 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 ## What's Next
 
 - [x] Wire up Supabase client in the React app (`src/lib/supabase.js`)
-- [ ] Build `AppShell` — nav, auth guard, role detection
+  - `.env.local` uses standard local dev defaults — replace `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` with real project credentials before deploying to Vercel
+- [x] Build `AppShell` — nav, auth guard, role detection
 - [ ] Build `/auth` page — magic link sign-in form
 - [ ] Build `/messages` page — message list with status badges
 - [ ] Build `MessageForm` — create/edit with recurring fields
