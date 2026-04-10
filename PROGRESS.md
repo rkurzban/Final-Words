@@ -159,7 +159,7 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 - [x] Wire up Supabase client in the React app (`src/lib/supabase.js`)
   - `.env.local` uses standard local dev defaults — replace `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` with real project credentials before deploying to Vercel
 - [x] Build `AppShell` — nav, auth guard, role detection
-- [ ] Build `/auth` page — magic link sign-in form
+- [x] Build `/auth` page — magic link sign-in form
 - [ ] Build `/messages` page — message list with status badges
 - [ ] Build `MessageForm` — create/edit with recurring fields
 - [ ] Build `/executors` page — manage designated executors
