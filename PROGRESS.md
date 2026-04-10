@@ -167,3 +167,5 @@ Test emails use `@example.com` addresses and are never sent in local dev (Mailpi
 - [ ] Set up Resend for email
 - [ ] Write Edge Functions for delivery and check-in pipeline
 - [x] Deploy to Vercel — https://final-words-git-main-rob-kurzbans-projects.vercel.app
+  - App loads correctly
+  - Magic link sign-in not working yet — `/auth/callback` returns 404 despite `vercel.json` rewrite rule; needs further investigation
