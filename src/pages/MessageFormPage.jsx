@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import { useAuth } from '../hooks/useAuth'
+import { DEMO_MESSAGES } from '../lib/demoData'
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -21,7 +23,9 @@ const EMPTY_FORM = {
 export default function MessageFormPage() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { session } = useAuth()
   const isEdit = Boolean(id)
+  const isDemo = isEdit && id.startsWith('demo-')
 
   const [form, setForm] = useState(EMPTY_FORM)
   const [msgStatus, setMsgStatus] = useState('draft')
@@ -31,6 +35,25 @@ export default function MessageFormPage() {
 
   useEffect(() => {
     if (!isEdit) return
+
+    if (isDemo) {
+      const msg = DEMO_MESSAGES.find((m) => m.id === id)
+      if (msg) {
+        setForm({
+          recipient_name: msg.recipient_name,
+          recipient_email: msg.recipient_email,
+          subject: msg.subject ?? '',
+          body: msg.body,
+          delivery_type: msg.delivery_type,
+          recurring_month: msg.recurring_month ?? 1,
+          recurring_day: msg.recurring_day ?? 1,
+          recurring_years: msg.recurring_years ?? 1,
+        })
+        setMsgStatus(msg.status)
+      }
+      setLoading(false)
+      return
+    }
 
     supabase
       .from('messages')
@@ -55,7 +78,7 @@ export default function MessageFormPage() {
         }
         setLoading(false)
       })
-  }, [id, isEdit])
+  }, [id, isEdit, isDemo])
 
   function field(name) {
     return (e) => setForm((prev) => ({ ...prev, [name]: e.target.value }))
@@ -105,7 +128,7 @@ export default function MessageFormPage() {
     }
   }
 
-  const isReadOnly = msgStatus === 'delivered' || msgStatus === 'cancelled'
+  const isReadOnly = isDemo || msgStatus === 'delivered' || msgStatus === 'cancelled'
 
   if (loading) return <p className="loading">Loading…</p>
 
@@ -113,7 +136,12 @@ export default function MessageFormPage() {
     <div className="message-form-page">
       <h2>{isEdit ? 'Edit message' : 'New message'}</h2>
 
-      {isReadOnly && (
+      {isDemo && (
+        <p className="form-notice">
+          You are viewing a sample message. <a href="/auth">Sign in</a> to create and manage your own.
+        </p>
+      )}
+      {!isDemo && isReadOnly && (
         <p className="form-notice">
           This message is <strong>{msgStatus}</strong> and cannot be edited.
         </p>

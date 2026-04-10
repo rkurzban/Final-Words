@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../hooks/useAuth'
+import { DEMO_EXECUTORS } from '../lib/demoData'
 
 const EMPTY_FORM = { name: '', email: '', is_backup: false }
 
 export default function ExecutorsPage() {
   const { session } = useAuth()
+  const isDemo = !session
+
   const [executors, setExecutors] = useState(null)
   const [fetchError, setFetchError] = useState(null)
   const [showAdd, setShowAdd] = useState(false)
@@ -14,8 +17,12 @@ export default function ExecutorsPage() {
   const [addError, setAddError] = useState(null)
 
   useEffect(() => {
+    if (isDemo) {
+      setExecutors(DEMO_EXECUTORS)
+      return
+    }
     load()
-  }, [])
+  }, [session])
 
   async function load() {
     const { data, error } = await supabase
@@ -63,9 +70,11 @@ export default function ExecutorsPage() {
     <div className="executors-page">
       <div className="page-header">
         <h2>Executors</h2>
-        <button className="btn-primary" onClick={() => setShowAdd((v) => !v)}>
-          {showAdd ? 'Cancel' : '+ Add executor'}
-        </button>
+        {!isDemo && (
+          <button className="btn-primary" onClick={() => setShowAdd((v) => !v)}>
+            {showAdd ? 'Cancel' : '+ Add executor'}
+          </button>
+        )}
       </div>
 
       <p className="page-desc">
@@ -73,7 +82,7 @@ export default function ExecutorsPage() {
         messages. Designate at least one primary executor and optionally a backup.
       </p>
 
-      {showAdd && (
+      {!isDemo && showAdd && (
         <form onSubmit={handleAdd} className="add-form">
           <h3>Add executor</h3>
           {addError && <p className="error">{addError}</p>}
@@ -115,7 +124,6 @@ export default function ExecutorsPage() {
       )}
 
       {fetchError && <p className="error">{fetchError}</p>}
-
       {executors === null && !fetchError && <p className="loading">Loading…</p>}
 
       {executors !== null && executors.length === 0 && (
@@ -138,9 +146,11 @@ export default function ExecutorsPage() {
                   {ex.accepted_at ? 'Accepted' : 'Pending'}
                 </span>
               </div>
-              <button className="btn-danger-subtle" onClick={() => handleRemove(ex.id, ex.name)}>
-                Remove
-              </button>
+              {!isDemo && (
+                <button className="btn-danger-subtle" onClick={() => handleRemove(ex.id, ex.name)}>
+                  Remove
+                </button>
+              )}
             </li>
           ))}
         </ul>

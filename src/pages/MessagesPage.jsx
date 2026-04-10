@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import { useAuth } from '../hooks/useAuth'
+import { DEMO_MESSAGES } from '../lib/demoData'
 
 const STATUS_LABEL = {
   draft:     'Draft',
@@ -10,10 +12,16 @@ const STATUS_LABEL = {
 }
 
 export default function MessagesPage() {
+  const { session } = useAuth()
   const [messages, setMessages] = useState(null)
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    if (!session) {
+      setMessages(DEMO_MESSAGES)
+      return
+    }
+
     supabase
       .from('messages')
       .select('id, recipient_name, subject, delivery_type, status, created_at')
@@ -22,7 +30,7 @@ export default function MessagesPage() {
         if (error) setError(error.message)
         else setMessages(data)
       })
-  }, [])
+  }, [session])
 
   return (
     <div className="messages-page">
