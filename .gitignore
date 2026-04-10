@@ -18,3 +18,10 @@ dist
 # OS
 .DS_Store
 Thumbs.db
+
+# Credentials and sensitive documents — never commit these
+*.xlsx
+*.xls
+*.csv
+*credentials*
+*passwords*
